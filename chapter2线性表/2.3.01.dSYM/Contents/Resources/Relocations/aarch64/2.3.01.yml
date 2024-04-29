@@ -1,0 +1,27 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     "/Users/lxt/Desktop/算法/chapter2线性表/2.3.01"
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _showList, symObjAddr: 0x0, symBinAddr: 0x100002FA0, symSize: 0x70 }
+  - { offsetInCU: 0xD0, offset: 0xD0, size: 0x8, addend: 0x0, symName: _showList, symObjAddr: 0x0, symBinAddr: 0x100002FA0, symSize: 0x70 }
+  - { offsetInCU: 0x102, offset: 0x102, size: 0x8, addend: 0x0, symName: _InitList, symObjAddr: 0x70, symBinAddr: 0x100003010, symSize: 0x30 }
+  - { offsetInCU: 0x12A, offset: 0x12A, size: 0x8, addend: 0x0, symName: _makeLNode, symObjAddr: 0xA0, symBinAddr: 0x100003040, symSize: 0x38 }
+  - { offsetInCU: 0x160, offset: 0x160, size: 0x8, addend: 0x0, symName: _length, symObjAddr: 0xD8, symBinAddr: 0x100003078, symSize: 0x58 }
+  - { offsetInCU: 0x1A4, offset: 0x1A4, size: 0x8, addend: 0x0, symName: _getElem, symObjAddr: 0x130, symBinAddr: 0x1000030D0, symSize: 0x84 }
+  - { offsetInCU: 0x1F6, offset: 0x1F6, size: 0x8, addend: 0x0, symName: _ListInsert, symObjAddr: 0x1B4, symBinAddr: 0x100003154, symSize: 0xF8 }
+  - { offsetInCU: 0x264, offset: 0x264, size: 0x8, addend: 0x0, symName: _ListDelete, symObjAddr: 0x2AC, symBinAddr: 0x10000324C, symSize: 0x150 }
+  - { offsetInCU: 0x2C4, offset: 0x2C4, size: 0x8, addend: 0x0, symName: _listHeaderInsert, symObjAddr: 0x3FC, symBinAddr: 0x10000339C, symSize: 0xB8 }
+  - { offsetInCU: 0x308, offset: 0x308, size: 0x8, addend: 0x0, symName: _listTailInsert, symObjAddr: 0x4B4, symBinAddr: 0x100003454, symSize: 0xC0 }
+  - { offsetInCU: 0x35A, offset: 0x35A, size: 0x8, addend: 0x0, symName: _InitDBList, symObjAddr: 0x574, symBinAddr: 0x100003514, symSize: 0x7C }
+  - { offsetInCU: 0x382, offset: 0x382, size: 0x8, addend: 0x0, symName: _dListInsert, symObjAddr: 0x5F0, symBinAddr: 0x100003590, symSize: 0x138 }
+  - { offsetInCU: 0x3E2, offset: 0x3E2, size: 0x8, addend: 0x0, symName: _dListDelete, symObjAddr: 0x728, symBinAddr: 0x1000036C8, symSize: 0x134 }
+  - { offsetInCU: 0x442, offset: 0x442, size: 0x8, addend: 0x0, symName: _dListHeaderInsert, symObjAddr: 0x85C, symBinAddr: 0x1000037FC, symSize: 0xF4 }
+  - { offsetInCU: 0x486, offset: 0x486, size: 0x8, addend: 0x0, symName: _dListTailInsert, symObjAddr: 0x950, symBinAddr: 0x1000038F0, symSize: 0xC4 }
+  - { offsetInCU: 0x4D8, offset: 0x4D8, size: 0x8, addend: 0x0, symName: _deleteX, symObjAddr: 0xA14, symBinAddr: 0x1000039B4, symSize: 0xF8 }
+  - { offsetInCU: 0x538, offset: 0x538, size: 0x8, addend: 0x0, symName: _deleteMin, symObjAddr: 0xB0C, symBinAddr: 0x100003AAC, symSize: 0x104 }
+  - { offsetInCU: 0x598, offset: 0x598, size: 0x8, addend: 0x0, symName: _reverseList, symObjAddr: 0xC10, symBinAddr: 0x100003BB0, symSize: 0x74 }
+  - { offsetInCU: 0x5EA, offset: 0x5EA, size: 0x8, addend: 0x0, symName: _delN2M, symObjAddr: 0xC84, symBinAddr: 0x100003C24, symSize: 0xD8 }
+  - { offsetInCU: 0x666, offset: 0x666, size: 0x8, addend: 0x0, symName: _getIntersectionNode, symObjAddr: 0xD5C, symBinAddr: 0x100003CFC, symSize: 0xA8 }
+  - { offsetInCU: 0x6B8, offset: 0x6B8, size: 0x8, addend: 0x0, symName: _disCreat, symObjAddr: 0xE04, symBinAddr: 0x100003DA4, symSize: 0x124 }
+  - { offsetInCU: 0x742, offset: 0x742, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0xF28, symBinAddr: 0x100003EC8, symSize: 0x80 }
+...
