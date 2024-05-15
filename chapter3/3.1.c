@@ -15,9 +15,40 @@ bool legal(char A[])
         return true;
     return false;
 }
-int dc(LinkList l,int length)
+bool dc(LinkList l, int length)
 {
-    
+    const int size = length / 2;char stack[size];int top=-1;
+    LNode *p=l->next;int i=0;
+    while (p!=NULL && i<size)
+    {
+        stack[++top]=p->data;
+        p=p->next;++i;
+    }
+    if(length%2!=0)
+        p=p->next;
+    while (p!=NULL)
+    {
+        if(p->data!=stack[top--])
+            return false;
+        p=p->next;
+    }
+    return true;
+}
+bool reverse(SqQueue *q,SqStack *s)
+{
+    if(q->front==q->rear)
+        return false;
+    while(q->front!=q->rear)
+    {
+        s->data[++s->top]=q->data[q->front];
+        q->front=(q->front+1)%MaxSize;
+    }
+    while (s->top!=-1)
+    {
+        q->data[q->rear]=s->data[s->top--];
+        q->rear=(q->rear+1)%MaxSize;
+    }
+    return true;
 }
 int main(int argc, char const *argv[])
 {
@@ -35,3 +66,4 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
+
