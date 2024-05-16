@@ -1,3 +1,6 @@
+#if !defined(MACRO)
+#define MACRO
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -87,6 +90,23 @@ bool getTop(SqStack *s, elemtp *x)
         return false;
     *x = s->data[s->top];
     return true;
+}
+void copyStack(SqStack *source,SqStack *destination)
+{
+    int top=source->top;
+    while (top!=-1)
+    {
+        destination->data[++destination->top]=source->data[top--];
+    }
+}
+void deleteTree(biTree t)
+{
+    if (t)
+    {
+        deleteTree(t->lchild);
+        deleteTree(t->rchild);
+        free(t);
+    }
 }
 void preOrder(biTree t)
 {
@@ -216,264 +236,7 @@ void levelOrder(biTree t)
             enQueue(&q, p->rchild);
     }
 }
-bool reverseLevel(biTree t)
-{
-    if (t == NULL)
-        return false;
-    SqQueue q;
-    initQueue(&q);
-    SqStack s;
-    initStack(&s);
-    biTNode *p = t;
-    enQueue(&q, p);
-    while (!queueEmpty(q))
-    {
-        deQueue(&q, &p);
-        push(&s, p);
-        if (p->lchild)
-            enQueue(&q, p->lchild);
-        if (p->rchild)
-            enQueue(&q, p->rchild);
-    }
-    while (!stackEmpty(s))
-    {
-        pop(&s, &p);
-        visit(p);
-    }
-    return true;
-}
-int high(biTree t)
-{
-    int high = 0, maxhigh = 1;
-    biTNode *p = t, *r = NULL;
-    SqStack s;
-    initStack(&s);
-    while (p || !stackEmpty(s))
-    {
-        if (p)
-        {
-            push(&s, p);
-            p = p->lchild;
-            ++high;
-        }
-        else
-        {
-            getTop(&s, &p);
-            if (p->rchild && p->rchild != r)
-                p = p->rchild;
-            else
-            {
-                pop(&s, &p);
-                r = p;
-                p = NULL;
-                --high;
-            }
-        }
-        if (high > maxhigh)
-            maxhigh = high;
-    }
-    return maxhigh;
-}
-bool isComplete(biTree t)
-{
-    if (t == NULL)
-        return false;
-    biTNode *p = t;
-    SqQueue q;
-    initQueue(&q);
-    enQueue(&q, p);
-    while (!queueEmpty(q))
-    {
-        deQueue(&q, &p);
-        if (p)
-        {
-            enQueue(&q, p->lchild);
-            enQueue(&q, p->rchild);
-        }
-        else
-        {
-            while (!queueEmpty(q))
-            {
-                deQueue(&q, &p);
-                if (p)
-                    return false;
-            }
-        }
-    }
-    return true;
-}
-int dsonNodes(biTree t)
-{
-    if (t == NULL)
-        return 0;
-    else if (t->lchild != NULL && t->rchild != NULL)
-        return dsonNodes(t->lchild) + dsonNodes(t->rchild) + 1;
-    else
-        return dsonNodes(t->lchild) + dsonNodes(t->rchild);
-}
-void changeChild(biTree b)
-{
-    if (b->lchild != NULL)
-        changeChild(b->lchild);
-    if (b->rchild != NULL)
-        changeChild(b->rchild);
-    biTNode *text = b->lchild;
-    b->lchild = b->rchild;
-    b->rchild = text;
-}
-bool preNode(biTree b, int k)
-{
-    SqStack s;
-    initStack(&s);
-    biTNode *p = b;
-    int i = 0;
-    while (p || !stackEmpty(s))
-    {
-        if (p)
-        {
-            ++i;
-            if (i == k)
-            {
-                visit(p);
-                return true;
-            }
-            push(&s, p);
-            p = p->lchild;
-        }
-        else
-        {
-            pop(&s, &p);
-            p = p->rchild;
-        }
-    }
-}
-void deleteTree(biTree t)
-{
-    if (t)
-    {
-        deleteTree(t->lchild);
-        deleteTree(t->rchild);
-        free(t);
-    }
-}
-void deleX(biTree t, elemtpt x)
-{
-    SqQueue q;
-    initQueue(&q);
-    biTNode *p = t;
-    enQueue(&q, p);
-    if (t->data == x)
-    {
-        deleteTree(t);
-        t = NULL;
-        return;
-    }
-    while (!queueEmpty(q))
-    {
-        deQueue(&q, &p);
-        if (p->lchild)
-        {
-            if (p->lchild->data == x)
-            {
-                deleteTree(p->lchild);
-                p->lchild = NULL;
-            }
-            else
-                enQueue(&q, p->lchild);
-        }
-        if (p->rchild)
-        {
-            if (p->rchild->data == x)
-            {
-                deleteTree(p->rchild);
-                p->rchild = NULL;
-            }
-            else
-                enQueue(&q, p->rchild);
-        }
-    }
-}
-void findParent(biTree t, elemtpt x)
-{
-    SqStack s;
-    initStack(&s);
-    biTNode *p = t, *r = NULL;
-    while (p || !stackEmpty(s))
-    {
-        if (p)
-        {
-            push(&s, p);
-            p = p->lchild;
-        }
-        else
-        {
-            getTop(&s, &p);
-            if (p->data == x)
-                break;
-            if (p->rchild && p->rchild != r)
-                p = p->rchild;
-            else
-            {
-                pop(&s, &p);
-                r = p;
-                p = NULL; // r是p的上一个访问的就知道有没有访问过右孩子了
-            }
-        }
-    }
-    while (!stackEmpty(s))
-    {
-        pop(&s, &p);
-        visit(p);
-    }
-}
-void copyStack(SqStack *source,SqStack *destination)
-{
-    int top=source->top;
-    while (top!=-1)
-    {
-        destination->data[++destination->top]=source->data[top--];
-    }
-}
-void findMutualParent(biTree t,biTNode *p1,biTNode *q1,biTNode *r)
-{
-    SqStack s;SqStack s1;
-    initStack(&s);initStack(&s1);
-    biTNode *p = t, *r = NULL;int lavel=0;
-    while (p || !stackEmpty(s))
-    {
-        if (p)
-        {
-            push(&s, p);
-            p = p->lchild;
-        }
-        else
-        {
-            getTop(&s, &p);
-            if(p==p1 || p==q1)
-            {
-                if(lavel==1)
-                    break;
-                lavel++;
-                copyStack(&s,&s1);
-            }
-            if (p->rchild && p->rchild != r)
-                p = p->rchild;
-            else
-            {
-                pop(&s, &p);
-                r = p;
-                p = NULL; // r是p的上一个访问的就知道有没有访问过右孩子了
-            }
-        }
-    }
-    while(!stackEmpty(s) && !stackEmpty(s1))
-    {
-        pop(&s,&p1);
-        pop(&s1,&q1);
-        if(p1==q1)
-        {
-            r=p1;
-            break;
-        }
-    }
-}
+
+
+
+#endif // MACRO
